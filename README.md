@@ -130,9 +130,9 @@ Runs the HDNetELM pipeline (DenseNet121 features + HOG features + ELM classifier
 python hdnetelm_gridsearch.py
 ```
 **What it does**
-- Extracts DenseNet121 feature maps and HOG features per image.
-- Concatenates features, standardizes them, then trains an ELM classifier.
-- Performs a manual grid search over:
+1. Extracts DenseNet121 feature maps and HOG features per image.
+2. Concatenates features, standardizes them, then trains an ELM classifier.
+3. Performs a manual grid search over:
 ```python
 param_grid = {
     'n_neurons': list(range(100, 1000, 50)),  # Hidden neurons
@@ -144,13 +144,23 @@ param_grid = {
 - `n_neurons`: 100 → 950 (step 50)  
 - `activation`: `'sigm'` (sigmoid)  
 - `rp`: `[0.01, 0.1, 1, 10, 100, 1000]`  
+4. Repeats for 5 runs and saves the best model metrics per run.
 
-That gives **108 parameter combinations per run**.
-
----
 **Outputs**
 - Excel summary: ModelELM/testing_metrics_ELM_5_runs_train_GridSearch.xlsx
 Columns include train/test: accuracy, precision, recall, F1, log-loss, time, plus selected n_neurons, activation, RP.
+
+4] ***hdnetelm_region_proposal_eval.py*** [*Testing of previously trained hybrid models*]
+
+Evaluates pretrained hybrid models (CNN backbone features + HOG features → classifier) on the Test split using Canny-based region proposals. Aggregates per-region predictions to image-level labels and writes metrics to Excel.
+
+**Usage**
+```bash
+python hdnetelm_region_proposal_eval.py
+```
+
+**Outputs**
+- xlsxFiles/Testing_metrics_{Backbone}_runs_test.xlsx with Accuracy, Precision, Recall, F1, BCE Loss, Testing Time, Confusion Matrix.
 
 ## ▶️ Quickstart Usage
 
