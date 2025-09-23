@@ -98,7 +98,7 @@ pip install -r requirements.txt
 
 1] ***cnn_baselines_training.py*** [*comparative training and evaluation of standard CNN architectures*]
 
-Trains and evaluates CNN baselines (VGG16, VGG19, ResNet50, ResNet101, ResNet152, InceptionV3, DenseNet121, EfficientNetB0, NASNetLarge) on the Niqab + COCO dataset. Supported models are: VGG16, VGG19, ResNet50, InceptionV3, ResNet101, ResNet152, EfficientNetB0, DenseNet121, NASNetLarge
+Trains and evaluates multiple CNN baselines (VGG16, VGG19, ResNet50, ResNet101, ResNet152, InceptionV3, DenseNet121, EfficientNetB0, NASNetLarge) on the Niqab + COCO dataset. 
 
 **Usage**
 ```bash
@@ -107,7 +107,13 @@ python cnn_baselines_training.py
 **Outputs**
 - Models: models/{ModelName}-{run}.h5
 - Histories: models/history{ModelName}-{run}.pkl
-- Metrics: excels/training_metrics_{ModelName}_5_runs_{train|test}.xlsx
+- Metrics (accuracy, precision, recall, F1, loss, training & testing time) in Excel format:
+  - excels/training_metrics_{ModelName}_5_runs_train.xlsx
+  - excels/training_metrics_{ModelName}_5_runs_test.xlsx
+**Notes**
+- Runs 5 independent experiments per model.
+- Uses Adam optimizer (lr=0.0001), batch size 32, early stopping.
+- Models are initialized with ImageNet weights and fine-tuned with a custom FC head.
 
 2] ***elm_dense_features_baseline.py*** [*Implements a DenseNet121 feature extractor + custom ELM classifier baseline*]
 
@@ -120,6 +126,13 @@ python elm_dense_features_baseline.py
 **Outputs**
 - ModelELM/testing_metrics_ELM_5_runs_train.xlsx
 - ModelELM/testing_metrics_ELM_5_runs_test.xlsx
+
+**Key Settings**
+- Feature extractor: DenseNet121(weights='imagenet', include_top=False, input_shape=(224,224,3))
+- Image size: 224×224, rescaled to 1/255
+- ELM: hidden units = 100 (default), sigmoid activation
+- Metrics: Accuracy, Precision, Recall, F1, Binary Cross-Entropy Loss; Confusion Matrix
+- Runs: 5 independent repetitions
 
 3] ***hdnetelm_gridsearch.py*** [*The full HDNetELM pipeline*]
 
@@ -149,6 +162,10 @@ param_grid = {
 **Outputs**
 - Excel summary: ModelELM/testing_metrics_ELM_5_runs_train_GridSearch.xlsx
 Columns include train/test: accuracy, precision, recall, F1, log-loss, time, plus selected n_neurons, activation, RP.
+**Notes**
+- Uses hpelm for the ELM classifier.
+- Requires scikit-image for HOG, OpenCV for image ops, and TensorFlow/Keras for DenseNet121.
+- Keep test generator shuffle=False so predictions align with labels.
 
 4] ***hdnetelm_region_proposal_eval.py*** [*Testing of previously trained hybrid models*]
 
