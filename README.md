@@ -37,7 +37,7 @@ The model was evaluated on the Niqab dataset (faces with heavy coverings such as
 
 -- Balanced with non-face COCO subset to reduce false positives.
 
-## 📂 Dataset Structure
+* 📂 **Dataset Structure**
 
 Organize your dataset like this:
 
@@ -87,10 +87,10 @@ Results saved → Excel
 
 ## ⚙️ Installation Requirements
 
-Install required dependencies:
+Install dependencies from requirements.txt:
 
 ```bash
-pip install numpy opencv-python openpyxl tensorflow scikit-image scikit-learn hpelm pandas
+pip install -r requirements.txt
 ```
 
 ---
