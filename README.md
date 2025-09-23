@@ -208,9 +208,17 @@ python hdnetelm_region_proposal_eval.py
    - Trained models in models/
    - Excel metrics in excels/, ModelELM/, or xlsxFiles/`
 
-
 ---
-
+## 🧪 Methodology & Reproducibility
+- **Training setup**: all CNN models initialized with ImageNet weights, frozen conv layers, custom FC head, trained with Adam (lr=0.0001), batch=32, max 25 epochs, early stopping on val_acc.
+- **Evaluation**: 5 independent runs per experiment; AVG±STD reported.
+- **Statistical tests**: Wilcoxon rank-sum test (α=0.05), mean-rank analysis.
+- **Computing environment**: Ubuntu Linux, NVIDIA H100 GPU (80GB), 20 vCPUs, 240 GB RAM
+- **Reproducibility**:
+  - Datasets: Niqab dataset (Zenodo DOI), COCO subset.
+  - Code: this repo + Zenodo archive.
+  - Fixed seeds set for each run (np.random.seed, tf.random.set_seed)
+---
 
 ## 📈 Example Results
 
