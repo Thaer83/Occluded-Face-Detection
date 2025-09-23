@@ -311,7 +311,7 @@ If you plan to use this repository or the Niqab dataset, please include the foll
   pages     = {209--215},
   isbn      = {978-3-030-33582-3}
 }
-
+```
 
 ## 📜 License
 This repository is released as open access:
