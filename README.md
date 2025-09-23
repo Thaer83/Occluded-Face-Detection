@@ -180,7 +180,7 @@ python hdnetelm_region_proposal_eval.py
 - Excel: xlsxFiles/Testing_metrics_{Backbone}_runs_test.xlsx with Accuracy, Precision, Recall, F1, BCE Loss, Testing Time, Confusion Matrix.
 
 **Notes**
-- Requires the pretrained files named: CombinedModel_hog{Backbone}_cnn{1..5}_face_detector.h5.
+- Requires the pretrained files named: CombinedModel_hog{Backbone}_cnn{1..5}_face_detector.h5 for evaluation (must be present in Models/)
 - Uses Canny edges → contour bboxes (min area filter) → ROI extraction → CNN+HOG features → model.predict.
 - Aggregation: average of ROI predictions; threshold decides final image label (default 0.65).
 - 
@@ -264,8 +264,7 @@ Metrics include:
 ## 📌 Notes
 - Update dataset paths if your dataset is stored elsewhere.
 - Ensure directories models/, excels/, ModelELM/, xlsxFiles/ exist before running. Otherwise, Excel saving will fail.
-- Pretrained weights for evaluation (CombinedModel_hog{Backbone}_cnn{run}_face_detector.h5) must be present in Models/.
-- Region proposal thresholds (min_area, agg_threshold) can be tuned via script flags.
+- Region proposal thresholds (min_area, agg_threshold) as well as other configurations can be tuned via script flags.
 
 ---
 
