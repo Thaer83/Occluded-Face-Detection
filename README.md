@@ -109,7 +109,7 @@ python cnn_baselines_training.py
 - Histories: models/history{ModelName}-{run}.pkl
 - Metrics: excels/training_metrics_{ModelName}_5_runs_{train|test}.xlsx
 
-2] ***elm_dense_features_baseline.py*** [*Implements a DenseNet121 feature extractor + custom ELM classifier baseline:*]
+2] ***elm_dense_features_baseline.py*** [*Implements a DenseNet121 feature extractor + custom ELM classifier baseline*]
 
 Trains an ELM classifier on DenseNet121 embeddings extracted from the Niqab/COCO dataset splits. Produces 5 independent runs and logs metrics in Excel. 
 
@@ -121,16 +121,36 @@ python elm_dense_features_baseline.py
 - ModelELM/testing_metrics_ELM_5_runs_train.xlsx
 - ModelELM/testing_metrics_ELM_5_runs_test.xlsx
 
-3] ***hdnetelm_gridsearch.py*** [*Implements a DenseNet121 feature extractor + custom ELM classifier baseline:*]
+3] ***hdnetelm_gridsearch.py*** [*The full HDNetELM pipeline*]
 
-Main HDNetELM pipeline: DenseNet121 + HOG features → concatenated + standardized → ELM classifier. Performs grid search on hidden neurons, activation, and RP. 
+Runs the HDNetELM pipeline (DenseNet121 features + HOG features + ELM classifier) with grid search over ELM hyperparameters, repeated for 5 runs. 
 
 **Usage**
 ```bash
 python hdnetelm_gridsearch.py
 ```
+**What it does**
+- Extracts DenseNet121 feature maps and HOG features per image.
+- Concatenates features, standardizes them, then trains an ELM classifier.
+- Performs a manual grid search over:
+```python
+param_grid = {
+    'n_neurons': list(range(100, 1000, 50)),  # Hidden neurons
+    'activation': ['sigm'],                   # Activation function
+    'rp': [0.01, 0.1, 1, 10, 100, 1000]       # Regularization parameter
+}
+```
+
+- `n_neurons`: 100 → 950 (step 50)  
+- `activation`: `'sigm'` (sigmoid)  
+- `rp`: `[0.01, 0.1, 1, 10, 100, 1000]`  
+
+That gives **108 parameter combinations per run**.
+
+---
 **Outputs**
-- Excel: ModelELM/testing_metrics_ELM_5_runs_train_GridSearch.xlsx
+- Excel summary: ModelELM/testing_metrics_ELM_5_runs_train_GridSearch.xlsx
+Columns include train/test: accuracy, precision, recall, F1, log-loss, time, plus selected n_neurons, activation, RP.
 
 ## ▶️ Quickstart Usage
 
@@ -156,24 +176,6 @@ python hdnetelm_region_proposal_eval.py
    - Trained models in models/
    - Excel metrics in excels/, ModelELM/, or xlsxFiles/`
 
----
-## 🔍 Grid Search Parameters
-
-We tune the following parameters:
-
-```python
-param_grid = {
-    'n_neurons': list(range(100, 1000, 50)),  # Hidden neurons
-    'activation': ['sigm'],                   # Activation function
-    'rp': [0.01, 0.1, 1, 10, 100, 1000]       # Regularization parameter
-}
-```
-
-- `n_neurons`: 100 → 950 (step 50)  
-- `activation`: `'sigm'` (sigmoid)  
-- `rp`: `[0.01, 0.1, 1, 10, 100, 1000]`  
-
-That gives **108 parameter combinations per run**.
 
 ---
 
