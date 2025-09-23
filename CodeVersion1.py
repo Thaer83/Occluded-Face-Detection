@@ -23,18 +23,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-def create_yolov8_model(input_shape=(640, 640, 3), num_classes=2):
-    inputs = tf.keras.Input(shape=input_shape)
-    x = layers.Conv2D(32, (3, 3), activation='relu', padding='same')(inputs)
-    x = layers.MaxPooling2D((2, 2))(x)
-    x = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(x)
-    x = layers.MaxPooling2D((2, 2))(x)
-    x = layers.Flatten()(x)
-    x = layers.Dense(128, activation='relu')(x)
-    outputs = layers.Dense(num_classes, activation='softmax')(x)
-    return models.Model(inputs, outputs)
-
-
 # Select which model to train: VGG16, VGG19, ResNet50, or InceptionV3
 def get_model(model_name, num_classes):
     if model_name == 'VGG16':
