@@ -106,10 +106,12 @@ python cnn_baselines_training.py
 ```
 **Outputs**
 - Models: models/{ModelName}-{run}.h5
-
 - Histories: models/history{ModelName}-{run}.pkl
-
 - Metrics: excels/training_metrics_{ModelName}_5_runs_{train|test}.xlsx
+
+2] ***elm_dense_features_baseline.py*** [*Implements a DenseNet121 feature extractor + custom ELM classifier baseline:*]
+
+Trains an ELM classifier on DenseNet121 embeddings extracted from the Niqab/COCO dataset splits. Produces 5 independent runs and logs metrics in Excel. 
 
 ## ▶️ Quickstart Usage
 
