@@ -219,7 +219,7 @@ python hdnetelm_region_proposal_eval.py
   - Code: this repo + Zenodo archive.
 ---
 
-## 📈 Example Results
+## 📈 Example Results (Illustrative)
 
 | n_neurons | RP   | Activation | Train Acc | Test Acc | Precision | Recall | F1   | Loss | Train Time (s) | Test Time (s) |
 |-----------|------|------------|-----------|----------|-----------|--------|------|------|----------------|---------------|
@@ -228,8 +228,6 @@ python hdnetelm_region_proposal_eval.py
 | 500       | 1    | sigm       | 0.951     | 0.947    | 0.950     | 0.945  | 0.947| 0.14 | 2.02           | 0.05          |
 | 750       | 10   | sigm       | 0.958     | 0.952    | 0.954     | 0.951  | 0.952| 0.11 | 2.34           | 0.06          |
 | 950       | 100  | sigm       | 0.960     | 0.954    | 0.956     | 0.952  | 0.954| 0.10 | 2.89           | 0.07          |
-
-> ⚠️ Values are **illustrative only** – actual results depend on your dataset.
 
 ---
 
@@ -265,7 +263,9 @@ Metrics include:
 
 ## 📌 Notes
 - Update dataset paths if your dataset is stored elsewhere.
-- Ensure `ModelELM/` directory exists, otherwise Excel saving will fail.
+- Ensure directories models/, excels/, ModelELM/, xlsxFiles/ exist before running. Otherwise, Excel saving will fail.
+- Pretrained weights for evaluation (CombinedModel_hog{Backbone}_cnn{run}_face_detector.h5) must be present in Models/.
+- Region proposal thresholds (min_area, agg_threshold) can be tuned via script flags.
 
 ---
 
