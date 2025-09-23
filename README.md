@@ -152,7 +152,7 @@ Columns include train/test: accuracy, precision, recall, F1, log-loss, time, plu
 
 4] ***hdnetelm_region_proposal_eval.py*** [*Testing of previously trained hybrid models*]
 
-Evaluates pretrained hybrid models (CNN backbone features + HOG features → classifier) on the Test split using Canny-based region proposals. Aggregates per-region predictions to image-level labels and writes metrics to Excel.
+Evaluates pretrained hybrid models (CNN backbone features + HOG features → classifier) on the Test split using Canny-based region proposals. Aggregates ROI predictions into image-level results and writes metrics to Excel.
 
 **Usage**
 ```bash
@@ -160,7 +160,8 @@ python hdnetelm_region_proposal_eval.py
 ```
 
 **Outputs**
-- xlsxFiles/Testing_metrics_{Backbone}_runs_test.xlsx with Accuracy, Precision, Recall, F1, BCE Loss, Testing Time, Confusion Matrix.
+- Excel: xlsxFiles/Testing_metrics_{Backbone}_runs_test.xlsx with Accuracy, Precision, Recall, F1, BCE Loss, Testing Time, Confusion Matrix.
+
 
 ## ▶️ Quickstart Usage
 
