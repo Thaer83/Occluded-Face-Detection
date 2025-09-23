@@ -41,7 +41,7 @@ test_generator = test_datagen.flow_from_directory(
     class_mode='binary')
 
 
-# Feature extraction using VGG16
+# Feature extraction using DenseNet
 def extract_features(generator):
 model = DenseNet121(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
     features = []
