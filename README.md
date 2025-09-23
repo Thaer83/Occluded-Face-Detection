@@ -98,7 +98,7 @@ pip install -r requirements.txt
 
 1] ***cnn_baselines_training.py*** [*comparative training and evaluation of standard CNN architectures*]
 
-Trains and evaluates CNN baselines (VGG16, VGG19, ResNet50, ResNet101, ResNet152, InceptionV3, DenseNet121, EfficientNetB0, NASNetLarge) on the Niqab + COCO dataset.
+Trains and evaluates CNN baselines (VGG16, VGG19, ResNet50, ResNet101, ResNet152, InceptionV3, DenseNet121, EfficientNetB0, NASNetLarge) on the Niqab + COCO dataset. Supported models are: VGG16, VGG19, ResNet50, InceptionV3, ResNet101, ResNet152, EfficientNetB0, DenseNet121, NASNetLarge
 
 **Usage**
 ```bash
@@ -121,6 +121,16 @@ python elm_dense_features_baseline.py
 - ModelELM/testing_metrics_ELM_5_runs_train.xlsx
 - ModelELM/testing_metrics_ELM_5_runs_test.xlsx
 
+3] ***hdnetelm_gridsearch.py*** [*Implements a DenseNet121 feature extractor + custom ELM classifier baseline:*]
+
+Main HDNetELM pipeline: DenseNet121 + HOG features → concatenated + standardized → ELM classifier. Performs grid search on hidden neurons, activation, and RP. 
+
+**Usage**
+```bash
+python hdnetelm_gridsearch.py
+```
+**Outputs**
+- Excel: ModelELM/testing_metrics_ELM_5_runs_train_GridSearch.xlsx
 
 ## ▶️ Quickstart Usage
 
@@ -129,8 +139,6 @@ python elm_dense_features_baseline.py
 ```bash
 python cnn_baselines_training.py
 ```
-Supported models are:
-VGG16, VGG19, ResNet50, InceptionV3, ResNet101, ResNet152, EfficientNetB0, DenseNet121, NASNetLarge
 ### 3. Run HDNetELM with grid search:
 Run the main hybrid pipeline with grid search over ELM parameters:
 ```bash
