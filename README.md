@@ -179,7 +179,11 @@ python hdnetelm_region_proposal_eval.py
 **Outputs**
 - Excel: xlsxFiles/Testing_metrics_{Backbone}_runs_test.xlsx with Accuracy, Precision, Recall, F1, BCE Loss, Testing Time, Confusion Matrix.
 
-
+**Notes**
+- Requires the pretrained files named: CombinedModel_hog{Backbone}_cnn{1..5}_face_detector.h5.
+- Uses Canny edges → contour bboxes (min area filter) → ROI extraction → CNN+HOG features → model.predict.
+- Aggregation: average of ROI predictions; threshold decides final image label (default 0.65).
+- 
 ## ▶️ Quickstart Usage
 
 ### 1. Prepare datasets in the above structure 
