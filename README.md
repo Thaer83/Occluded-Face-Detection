@@ -31,7 +31,7 @@ The model was evaluated on the Niqab dataset (faces with heavy coverings such as
 
 * **Preprocessing**:
 
--- Images resized to 224×224 pixels.
+-- Images resized to **224×224 pixels**.
 
 -- Contextual labeling used for occluded faces (bounding boxes include surrounding regions).
 
@@ -50,8 +50,8 @@ dataset/
 │   ├── class1/
 │   └── class2/
 └── Test/                # Testing data
-    ├── class1/
-    └── class2/
+    ├── faces/
+    └── no face/
 ```
 
 ---
@@ -96,25 +96,31 @@ pip install numpy opencv-python openpyxl tensorflow scikit-image scikit-learn hp
 ---
 
 
-## ▶️ Usage
+## ▶️ Quickstart Usage
 
-### 1. Prepare dataset in the above structure  
-### 2. Run HDNetELM (Hybrid HOG + DenseNet121 + ELM)
-Run the main hybrid pipeline with grid search over ELM parameters:
+### 1. Prepare datasets in the above structure 
+### 2. Train CNN baselines.
 ```bash
-python HogGridSearchElmPhase3.py
-```
-3. Outputs:
-   - Console: Best hyperparameters + metrics per run
-   - Excel: `ModelELM/testing_metrics_ELM_5_runs_train_GridSearch.xlsx`
-
-### 3. CNN Comparisons (CodeVersion1.py)
-To investigate and compare different advanced CNN models, use:
-```bash
-python CodeVersion1.py
+python cnn_baselines_training.py
 ```
 Supported models are:
 VGG16, VGG19, ResNet50, InceptionV3, ResNet101, ResNet152, EfficientNetB0, DenseNet121, NASNetLarge
+### 3. Run HDNetELM with grid search:
+Run the main hybrid pipeline with grid search over ELM parameters:
+```bash
+python hdnetelm_gridsearch.py
+```
+### 4. Optional: Train DenseNet+ELM baseline:
+```bash
+python elm_dense_features_baseline.py
+```
+### 5. Evaluate/Test pretrained models:
+```bash
+python hdnetelm_region_proposal_eval.py
+```
+### 6. Check Outputs:
+   - Trained models in models/
+   - Excel metrics in excels/, ModelELM/, or xlsxFiles/`
 
 ---
 ## 🔍 Grid Search Parameters
