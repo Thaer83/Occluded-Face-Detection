@@ -13,14 +13,13 @@ This repository contains the implementation of HDNetELM, a hybrid face detection
 
 The model was evaluated on the Niqab dataset (faces with heavy coverings such as niqabs/veils) and a subset of the COCO dataset (non-face images), showing robust performance in detecting occluded faces.
 
-
 ---
 
 ## 🔑 Key Features
 - Hybrid feature extraction (Deep + Handcrafted)
 - Very fast training with ELM
 - Automated **Grid Search** optimization
-- Detailed metrics and logs
+- Detailed metrics and logs (Excel, pickle, .h5 models)
 - Scalable to large datasets
 
 ---
