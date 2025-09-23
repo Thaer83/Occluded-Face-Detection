@@ -1,0 +1,9 @@
+tensorflow==2.15.0
+keras==2.15.0
+numpy
+opencv-python
+scikit-learn
+scikit-image
+hpelm
+pandas
+openpyxl
