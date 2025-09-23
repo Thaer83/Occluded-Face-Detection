@@ -217,7 +217,6 @@ python hdnetelm_region_proposal_eval.py
 - **Reproducibility**:
   - Datasets: Niqab dataset (Zenodo DOI), COCO subset.
   - Code: this repo + Zenodo archive.
-  - Fixed seeds set for each run (np.random.seed, tf.random.set_seed)
 ---
 
 ## 📈 Example Results
