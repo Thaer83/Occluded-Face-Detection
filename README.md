@@ -94,7 +94,24 @@ pip install -r requirements.txt
 ```
 
 ---
+## 🧾 Code Information
 
+1] *cnn_baselines_training.py* [comparative training and evaluation of standard CNN architectures]
+Trains and evaluates CNN baselines (VGG16, VGG19, ResNet50, ResNet101, ResNet152, InceptionV3, DenseNet121, EfficientNetB0, NASNetLarge) on the Niqab + COCO dataset.
+
+**Usage**
+```bash
+pip install -r requirements.txt
+```
+python cnn_baselines_training.py
+
+---
+**Outputs**
+- Models: models/{ModelName}-{run}.h5
+
+- Histories: models/history{ModelName}-{run}.pkl
+
+- Metrics: excels/training_metrics_{ModelName}_5_runs_{train|test}.xlsx
 
 ## ▶️ Quickstart Usage
 
