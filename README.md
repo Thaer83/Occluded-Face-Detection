@@ -113,6 +113,15 @@ python cnn_baselines_training.py
 
 Trains an ELM classifier on DenseNet121 embeddings extracted from the Niqab/COCO dataset splits. Produces 5 independent runs and logs metrics in Excel. 
 
+**Usage**
+```bash
+python elm_dense_features_baseline.py
+```
+**Outputs**
+- ModelELM/testing_metrics_ELM_5_runs_train.xlsx
+- ModelELM/testing_metrics_ELM_5_runs_test.xlsx
+
+
 ## ▶️ Quickstart Usage
 
 ### 1. Prepare datasets in the above structure 
